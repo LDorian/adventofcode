@@ -7,20 +7,21 @@ def openfile():
 def submarine_move(file):
     x = 0
     y = 0
+    aim = 0
     for line in file:
         line = line.strip()
         if line[0] == 'f':
             x += int(line[-1])
+            y += aim * int(line[-1])
         elif line[0] == 'u':
-            y -= int(line[-1])
+            aim -= int(line[-1])
         elif line[0] == 'd':
-            y += int(line[-1])
-    return x, y
+            aim += int(line[-1])
+    return x * y
 
 def main():
     file = openfile()
-    x, y = submarine_move(file)
-    print(x * y)
+    print(submarine_move(file))
 
 if __name__ == '__main__':
     main()
